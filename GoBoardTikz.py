@@ -25,7 +25,7 @@ class GoBoard:
 """.format(j + 1, j_start, j_stop)
 		return s
 
-	def make(self, white=[], black=[], marked=[], number=[], **kwargs):
+	def make(self, white=[], black=[], marked=[], number=[], circle=[], **kwargs):
 		s = r"""\begin{tikzpicture}
 """
 		s += self._board()
@@ -43,15 +43,23 @@ class GoBoard:
 			else:
 				s += r"\draw [draw=brown!60!yellow!80!red!80!black ,fill=brown!60!yellow!80!red!80!black] (" + str(i) + ", " + str(j) + r") circle (0.4);"
 				s += r"\draw [draw=black] (" + str(i) + ", " + str(j) + r") node {\scalebox{1.75}{$\boldsymbol{\bigtriangleup}$}};" + "\n"
+		for i, j in circle:
+			if (i, j) in black:
+				s += r"\draw [white] (" + str(i) + ", " + str(j) + r") node {\scalebox{1.75}{$\boldsymbol{\bigcirc }$}};" + "\n"
+			elif (i, j) in white:
+				s += r"\draw [black] (" + str(i) + ", " + str(j) + r") node {\scalebox{1.75}{$\boldsymbol{\bigcirc }$}};" + "\n"
+			else:
+				s += r"\draw [draw=brown!60!yellow!80!red!80!black ,fill=brown!60!yellow!80!red!80!black] (" + str(i) + ", " + str(j) + r") circle (0.4);"
+				s += r"\draw [draw=black] (" + str(i) + ", " + str(j) + r") node {\scalebox{1.75}{$\boldsymbol{\bigcirc }$}};" + "\n"
 		for idx, v in enumerate(number):
 			i, j = v
 			if (i, j) in black:
-				s += r"\draw [white] (" + str(i) + ", " + str(j) + r") node {\scalebox{1.75}{\textbf{" + str(idx) + "}}};" + "\n"
+				s += r"\draw [white] (" + str(i) + ", " + str(j) + r") node {\scalebox{1.75}{\textbf{" + str(idx+1) + "}}};" + "\n"
 			elif (i, j) in white:
-				s += r"\draw [black] (" + str(i) + ", " + str(j) + r") node {\scalebox{1.75}{\textbf{" + str(idx) + "}}};" + "\n"
+				s += r"\draw [black] (" + str(i) + ", " + str(j) + r") node {\scalebox{1.75}{\textbf{" + str(idx+1) + "}}};" + "\n"
 			else:
 				s += r"\draw [draw=brown!60!yellow!80!red!80!black ,fill=brown!60!yellow!80!red!80!black] (" + str(i) + ", " + str(j) + r") circle (0.4);"
-				s += r"\draw [draw=black] (" + str(i) + ", " + str(j) + r") node {\scalebox{1.75}{\textbf{" + str(idx) + "}}};" + "\n"
+				s += r"\draw [draw=black] (" + str(i) + ", " + str(j) + r") node {\scalebox{1.75}{\textbf{" + str(idx+1) + "}}};" + "\n"
 		for k, v in kwargs.items():
 			for i, j in v:
 				if (i, j) in black:
@@ -71,8 +79,15 @@ m = [(1, 1), (2, 1), (3, 1)]
 n = [(1, 2), (2, 2), (1, 3)]
 a = [(4, 1), (4, 2), (3, 3)]
 
-dims = (5,5)
+dims = (6,6)
 
 brett = GoBoard(dims, left=False, top=False)
-print(brett.make())
-print(brett.make(white=w, black=b, marked=m, number=n, A=a))
+
+b = [(3, 4), (4, 4), (2, 3), (1, 3), (5, 5), (4, 6)]
+w = [(4, 3), (3, 3), (2, 2), (5, 4), (5, 3)]
+c = [(3, 4)]
+m = [(4, 3)]
+n = [(4, 4), (3, 3), (2, 3), (2, 2), (1, 3), (5, 4), (5, 5), (4, 6), (5, 3)]
+
+tikz = brett.make(white=w, black=b, circle=c, marked=m, number=n)
+print(tikz)
