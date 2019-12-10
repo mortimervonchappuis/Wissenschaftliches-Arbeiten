@@ -102,15 +102,11 @@ Welcher folgendes Bild erstellt:
 Zusätzlich können auch noch weitere Markierungen gewählt werden, die noch nicht im Code spezifiziert sind. Möchte man ein Feld mit  dem Buchstaben 'A' betiteln so kann man dies als Übergabe für das Attribut `A` tun, auch ohne, dass das Attribut `A` vorher im Code spezifiziert wurde.
 
 ~~~python
-brett = GoBoard(dims, left=False, top=False)
-
 b = [(3, 4), (4, 4), (2, 3), (1, 3), (5, 5), (4, 6)]
 w = [(4, 3), (3, 3), (2, 2), (5, 4), (5, 3)]
-c = [(3, 4)]
-m = [(4, 3)]
-n = [(4, 4), (3, 3), (2, 3), (2, 2), (1, 3), (5, 4), (5, 5), (4, 6), (5, 3)]
 
-tikz = brett.make(white=w, black=b, circle=c, marked=m, number=n)
+tikz = brett.make(white=w, black=b, A=[(1, 2)], B=[(3, 2)])
+
 print(tikz)
 ~~~
 Erstellt den Code:
