@@ -34,6 +34,7 @@ Erzeugt den folgenden Code:
 \end{tikzpicture}
 ~~~
 Dieser Code wiederum erzeugt in LaTex folgendes Bild:
+
 ![Go Board 5x5](demo_1.png)
 
 Als weitere Elemente für die `make` mathode können listen von Positionen übergeben werden in der Form `[(x0, y0), (x1, y1), (x2, y2) ... ]`. Diese Listen können für die Attribute `white` und `black` für Steine, `marked` für Dreiecksmartierunge, `circle` für Kreismarkierungen und `number` für eine Durchnummerierung der einzelnen Positionen übergeben werden.
@@ -95,12 +96,22 @@ Erstellt den Code:
 \end{tikzpicture}
 ~~~
 Welcher folgendes Bild erstellt:
+
 ![3-3 Invasion](demo_2.png)
 
 Zusätzlich können auch noch weitere Markierungen gewählt werden, die noch nicht im Code spezifiziert sind. Möchte man ein Feld mit  dem Buchstaben 'A' betiteln so kann man dies als Übergabe für das Attribut `A` tun, auch ohne, dass das Attribut `A` vorher im Code spezifiziert wurde.
 
 ~~~python
+brett = GoBoard(dims, left=False, top=False)
 
+b = [(3, 4), (4, 4), (2, 3), (1, 3), (5, 5), (4, 6)]
+w = [(4, 3), (3, 3), (2, 2), (5, 4), (5, 3)]
+c = [(3, 4)]
+m = [(4, 3)]
+n = [(4, 4), (3, 3), (2, 3), (2, 2), (1, 3), (5, 4), (5, 5), (4, 6), (5, 3)]
+
+tikz = brett.make(white=w, black=b, circle=c, marked=m, number=n)
+print(tikz)
 ~~~
 Erstellt den Code:
 ~~~
@@ -134,4 +145,5 @@ Erstellt den Code:
 \end{tikzpicture}
 ~~~
 Welcher folgendes Bild erstellt:
+
 ![Follow Up](demo_3.png)
