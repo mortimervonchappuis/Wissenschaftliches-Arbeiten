@@ -72,13 +72,6 @@ class GoBoard:
 		s += r"""\end{tikzpicture}"""
 		return s
 
-
-w = [(1, 1), (1, 2), (1, 3)]
-b = [(2, 1), (2, 2), (3, 3)]
-m = [(1, 1), (2, 1), (3, 1)]
-n = [(1, 2), (2, 2), (1, 3)]
-a = [(4, 1), (4, 2), (3, 3)]
-
 dims = (6,6)
 
 brett = GoBoard(dims, left=False, top=False)
@@ -89,11 +82,6 @@ c = [(3, 4)]
 m = [(4, 3)]
 n = [(4, 4), (3, 3), (2, 3), (2, 2), (1, 3), (5, 4), (5, 5), (4, 6), (5, 3)]
 
-tikz = brett.make(white=w, black=b, circle=c, marked=m, number=n)
-
-b = [(3, 4), (4, 4), (2, 3), (1, 3), (5, 5), (4, 6)]
-w = [(4, 3), (3, 3), (2, 2), (5, 4), (5, 3)]
-
-tikz = brett.make(white=w, black=b, A=[(1, 2)], B=[(3, 2)])
+tikz = brett.make(white=w, black=b, circle=c, marked=m, number=n, A=[(1, 2)], B=[(3, 2)])
 
 print(tikz)
