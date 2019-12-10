@@ -33,4 +33,5 @@ Erzeugt den folgenden Code:
 \draw [very thick, black] (0,5) -- (5,5);
 \end{tikzpicture}
 ~~~
-![alt text](demo_1.pdf)
+
+![Go Board 5x5](demo_1.png)
