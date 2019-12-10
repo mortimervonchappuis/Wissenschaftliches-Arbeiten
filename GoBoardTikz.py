@@ -25,7 +25,7 @@ class GoBoard:
 """.format(j + 1, j_start, j_stop)
 		return s
 
-	def make(self, white=None, black=None, marked=None, number=None, **kwargs):
+	def make(self, white=[], black=[], marked=[], number=[], **kwargs):
 		s = r"""\begin{tikzpicture}
 """
 		s += self._board()
@@ -71,4 +71,8 @@ m = [(1, 1), (2, 1), (3, 1)]
 n = [(1, 2), (2, 2), (1, 3)]
 a = [(4, 1), (4, 2), (3, 3)]
 
-print(GoBoard((5,5), left=False, top=False).make(white=w, black=b, marked=m, number=n, A=a))
+dims = (5,5)
+
+brett = GoBoard(dims, left=False, top=False)
+print(brett.make())
+print(brett.make(white=w, black=b, marked=m, number=n, A=a))
